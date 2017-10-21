@@ -62,6 +62,9 @@ RCT_EXPORT_MODULE();
                                 @"compressImageQuality": @1,
                                 @"compressVideoPreset": @"MediumQuality",
                                 @"loadingLabelText": @"Processing assets...",
+                                @"moveAndScale": @"Move and Scale",
+                                @"cancel": @"Cancel",
+                                @"choose": @"Choose",
                                 @"mediaType": @"any",
                                 @"showsSelectedCount": @YES
                                 };
@@ -69,10 +72,6 @@ RCT_EXPORT_MODULE();
     }
     
     return self;
-}
-
-+ (BOOL)requiresMainQueueSetup {
-    return YES;
 }
 
 - (void (^ __nullable)(void))waitAnimationEnd:(void (^ __nullable)(void))completion {
@@ -241,7 +240,6 @@ RCT_EXPORT_METHOD(openPicker:(NSDictionary *)options
             self.reject(ERROR_PICKER_UNAUTHORIZED_KEY, ERROR_PICKER_UNAUTHORIZED_MSG, nil);
             return;
         }
-        
         dispatch_async(dispatch_get_main_queue(), ^{
             // init picker
             QBImagePickerController *imagePickerController =
@@ -317,6 +315,13 @@ RCT_EXPORT_METHOD(openCropper:(NSDictionary *)options
     imageCropVC.avoidEmptySpaceAroundImage = YES;
     imageCropVC.dataSource = self;
     imageCropVC.delegate = self;
+    
+    NSString *moveAndScale = [self.options objectForKey:@"moveAndScale"];
+    NSString *cancel = [self.options objectForKey:@"cancel"];
+    NSString *choose = [self.options objectForKey:@"choose"];
+    imageCropVC.moveAndScaleLabel.text = moveAndScale;
+    [imageCropVC.cancelButton setTitle:cancel forState:UIControlStateNormal];
+    [imageCropVC.chooseButton setTitle:choose forState:UIControlStateNormal];
     [imageCropVC setModalPresentationStyle:UIModalPresentationCustom];
     [imageCropVC setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
     

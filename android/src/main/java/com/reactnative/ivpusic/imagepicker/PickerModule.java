@@ -75,6 +75,10 @@ class PickerModule extends ReactContextBaseJavaModule implements ActivityEventLi
     private boolean enableRotationGesture = false;
     private ReadableMap options;
 
+    private String moveAndScale = "Move and Scale";
+    private String cancel = "Cancel";
+    private String choose = "Choose";
+
 
     //Grey 800
     private final String DEFAULT_TINT = "#424242";
@@ -117,6 +121,9 @@ class PickerModule extends ReactContextBaseJavaModule implements ActivityEventLi
         width = options.hasKey("width") ? options.getInt("width") : width;
         height = options.hasKey("height") ? options.getInt("height") : height;
         cropping = options.hasKey("cropping") ? options.getBoolean("cropping") : cropping;
+        moveAndScale = options.hasKey("moveAndScale") ? options.getString("moveAndScale") : moveAndScale;
+        cancel = options.hasKey("cancel") ? options.getString("cancel") : cancel;
+        choose = options.hasKey("choose") ? options.getString("choose") : choose;
         cropperActiveWidgetColor = options.hasKey("cropperActiveWidgetColor") ? options.getString("cropperActiveWidgetColor") : cropperActiveWidgetColor;
         cropperStatusBarColor = options.hasKey("cropperStatusBarColor") ? options.getString("cropperStatusBarColor") : cropperStatusBarColor;
         cropperToolbarColor = options.hasKey("cropperToolbarColor") ? options.getString("cropperToolbarColor") : cropperToolbarColor;
@@ -578,6 +585,7 @@ class PickerModule extends ReactContextBaseJavaModule implements ActivityEventLi
         options.setCircleDimmedLayer(cropperCircleOverlay);
         options.setShowCropGrid(showCropGuidelines);
         options.setHideBottomControls(hideBottomControls);
+        options.setToolbarTitle(moveAndScale);
         if (enableRotationGesture) {
             // UCropActivity.ALL = enable both rotation & scaling
             options.setAllowedGestures(
