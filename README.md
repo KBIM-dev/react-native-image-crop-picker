@@ -87,33 +87,36 @@ ImagePicker.clean().then(() => {
 
 ### Request Object
 
-| Property                                |                   Type                   | Description                              |
-| --------------------------------------- | :--------------------------------------: | :--------------------------------------- |
-| cropping                                |           bool (default false)           | Enable or disable cropping               |
-| width                                   |                  number                  | Width of result image when used with `cropping` option |
-| height                                  |                  number                  | Height of result image when used with `cropping` option |
-| multiple                                |           bool (default false)           | Enable or disable multiple image selection |
-| includeBase64                           |           bool (default false)           | Enable or disable returning base64 data with image |
-| includeExif                           |           bool (default false)           | Include image exif data in the response |
-| cropperActiveWidgetColor (android only) |       string (default `"#424242"`)       | When cropping image, determines ActiveWidget color. |
-| cropperStatusBarColor (android only)    |        string (default `#424242`)        | When cropping image, determines the color of StatusBar. |
-| cropperToolbarColor (android only)      |        string (default `#424242`)        | When cropping image, determines the color of Toolbar. |
-| cropperCircleOverlay                    |           bool (default false)           | Enable or disable circular cropping mask. |
-| minFiles (ios only)                     |            number (default 1)            | Min number of files to select when using `multiple` option |
-| maxFiles (ios only)                     |            number (default 5)            | Max number of files to select when using `multiple` option |
-| waitAnimationEnd (ios only)             |           bool (default true)            | Promise will resolve/reject once ViewController `completion` block is called |
+| Property                                |                   Type                      | Description                              |
+| --------------------------------------- | :--------------------------------------:    | :--------------------------------------- |
+| cropping                                |           bool (default false)              | Enable or disable cropping               |
+| moveAndScale                            |      string (default 'Move and Scale')      | Text displayed in cropper title          |
+| cancel (ios only)                       |           string (default 'Cancel')         | Text displayed in cropper Cancel button  |
+| choose (ios only)                       |           string (default 'Choose')         | Text displayed in cropper Choose button  |
+| width                                   |                  number                     | Width of result image when used with `cropping` option |
+| height                                  |                  number                     | Height of result image when used with `cropping` option |
+| multiple                                |           bool (default false)              | Enable or disable multiple image selection |
+| includeBase64                           |           bool (default false)              | Enable or disable returning base64 data with image |
+| includeExif                           |           bool (default false)                | Include image exif data in the response |
+| cropperActiveWidgetColor (android only) |       string (default `"#424242"`)          | When cropping image, determines ActiveWidget color. |
+| cropperStatusBarColor (android only)    |        string (default `#424242`)           | When cropping image, determines the color of StatusBar. |
+| cropperToolbarColor (android only)      |        string (default `#424242`)           | When cropping image, determines the color of Toolbar. |
+| cropperCircleOverlay                    |           bool (default false)              | Enable or disable circular cropping mask. |
+| minFiles (ios only)                     |            number (default 1)               | Min number of files to select when using `multiple` option |
+| maxFiles (ios only)                     |            number (default 5)               | Max number of files to select when using `multiple` option |
+| waitAnimationEnd (ios only)             |           bool (default true)               | Promise will resolve/reject once ViewController `completion` block is called |
 | smartAlbums (ios only)                  | array (default ['UserLibrary', 'PhotoStream', 'Panoramas', 'Videos', 'Bursts']) | List of smart albums to choose from      |
-| useFrontCamera (ios only)               |           bool (default false)           | Whether to default to the front/'selfie' camera when opened |
-| compressVideoPreset (ios only)          |      string (default MediumQuality)      | Choose which preset will be used for video compression |
-| compressImageMaxWidth                   |          number (default none)           | Compress image with maximum width        |
-| compressImageMaxHeight                  |          number (default none)           | Compress image with maximum height       |
-| compressImageQuality                    |            number (default 1)            | Compress image with quality (from 0 to 1, where 1 is best quality) |
-| loadingLabelText (ios only)             | string (default "Processing assets...")  | Text displayed while photo is loading in picker |
-| mediaType                               |           string (default any)           | Accepted mediaType for image selection, can be one of: 'photo', 'video', or 'any' |
-| showsSelectedCount (ios only)           |           bool (default true)            | Whether to show the number of selected assets |
-| showCropGuidelines (android only)       |           bool (default true)            | Whether to show the 3x3 grid on top of the image during cropping |
-| hideBottomControls (android only)       |           bool (default false)           | Whether to display bottom controls       |
-| enableRotationGesture (android only)    |           bool (default false)           | Whether to enable rotating the image by hand gesture |
+| useFrontCamera (ios only)               |           bool (default false)              | Whether to default to the front/'selfie' camera when opened |
+| compressVideoPreset (ios only)          |      string (default MediumQuality)         | Choose which preset will be used for video compression |
+| compressImageMaxWidth                   |          number (default none)              | Compress image with maximum width        |
+| compressImageMaxHeight                  |          number (default none)              | Compress image with maximum height       |
+| compressImageQuality                    |            number (default 1)               | Compress image with quality (from 0 to 1, where 1 is best quality) |
+| loadingLabelText (ios only)             | string (default "Processing assets...")     | Text displayed while photo is loading in picker |
+| mediaType                               |           string (default any)              | Accepted mediaType for image selection, can be one of: 'photo', 'video', or 'any' |
+| showsSelectedCount (ios only)           |           bool (default true)               | Whether to show the number of selected assets |
+| showCropGuidelines (android only)       |           bool (default true)               | Whether to show the 3x3 grid on top of the image during cropping |
+| hideBottomControls (android only)       |           bool (default false)              | Whether to display bottom controls       |
+| enableRotationGesture (android only)    |           bool (default false)              | Whether to enable rotating the image by hand gesture |
 ### Response Object
 
 | Property                  |  Type  | Description                              |
@@ -134,7 +137,7 @@ ImagePicker.clean().then(() => {
 ## Install package
 
 ```
-npm i react-native-image-crop-picker --save
+npm install git://github.com/KBIM-dev/react-native-image-crop-picker.git --save
 ```
 
 Link the package using react-native link:
@@ -233,36 +236,6 @@ Details for second approach:
 1. Remove the pre-built frameworks from `Embedded Binaries`
 2. Build for Device
 3. Add the newly built binaries for both frameworks to `Embedded Binaries` (located at `Libraries/imageCropPicker/Libraries/_framework_name_.xcodeproj/Products/_framework_name_.framework`)
-
-## Contributors
-
-This project exists thanks to all the people who contribute. [[Contribute]](CONTRIBUTING.md).
-<a href="graphs/contributors"><img src="https://opencollective.com/react-native-image-crop-picker/contributors.svg?width=890" /></a>
-
-
-## Backers
-
-Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com/react-native-image-crop-picker#backer)]
-
-<a href="https://opencollective.com/react-native-image-crop-picker#backers" target="_blank"><img src="https://opencollective.com/react-native-image-crop-picker/backers.svg?width=890"></a>
-
-
-## Sponsors
-
-Support this project by becoming a sponsor. Your logo will show up here with a link to your website. [[Become a sponsor](https://opencollective.com/react-native-image-crop-picker#sponsor)]
-
-<a href="https://opencollective.com/react-native-image-crop-picker/sponsor/0/website" target="_blank"><img src="https://opencollective.com/react-native-image-crop-picker/sponsor/0/avatar.svg"></a>
-<a href="https://opencollective.com/react-native-image-crop-picker/sponsor/1/website" target="_blank"><img src="https://opencollective.com/react-native-image-crop-picker/sponsor/1/avatar.svg"></a>
-<a href="https://opencollective.com/react-native-image-crop-picker/sponsor/2/website" target="_blank"><img src="https://opencollective.com/react-native-image-crop-picker/sponsor/2/avatar.svg"></a>
-<a href="https://opencollective.com/react-native-image-crop-picker/sponsor/3/website" target="_blank"><img src="https://opencollective.com/react-native-image-crop-picker/sponsor/3/avatar.svg"></a>
-<a href="https://opencollective.com/react-native-image-crop-picker/sponsor/4/website" target="_blank"><img src="https://opencollective.com/react-native-image-crop-picker/sponsor/4/avatar.svg"></a>
-<a href="https://opencollective.com/react-native-image-crop-picker/sponsor/5/website" target="_blank"><img src="https://opencollective.com/react-native-image-crop-picker/sponsor/5/avatar.svg"></a>
-<a href="https://opencollective.com/react-native-image-crop-picker/sponsor/6/website" target="_blank"><img src="https://opencollective.com/react-native-image-crop-picker/sponsor/6/avatar.svg"></a>
-<a href="https://opencollective.com/react-native-image-crop-picker/sponsor/7/website" target="_blank"><img src="https://opencollective.com/react-native-image-crop-picker/sponsor/7/avatar.svg"></a>
-<a href="https://opencollective.com/react-native-image-crop-picker/sponsor/8/website" target="_blank"><img src="https://opencollective.com/react-native-image-crop-picker/sponsor/8/avatar.svg"></a>
-<a href="https://opencollective.com/react-native-image-crop-picker/sponsor/9/website" target="_blank"><img src="https://opencollective.com/react-native-image-crop-picker/sponsor/9/avatar.svg"></a>
-
-
 
 ## License
 *MIT*
